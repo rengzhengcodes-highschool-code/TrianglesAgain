@@ -19,7 +19,7 @@ public class PointTester {
     System.out.println("RANDOMIZED UNIT CIRCLE TEST");
     for (int index = 0; index < randomizedPoints.length; index++) {
       if (Math.round(randomizedPoints[index].distanceTo(origin) * Math.pow(10, 15))/Math.pow(10, 15) == 1) {//we round here because FP errors can cause the last digit to be off a bit.
-        //System.out.println("TRUTH TEST PASSED AT RUN: " + index);             //if you want live printouts uncomment this.
+        //System.out.println("DISTANCE TEST PASSED AT RUN: " + index);             //if you want live printouts uncomment this.
       } else {
         failure = true;
         System.out.println("WE HAVE FAILED");
@@ -34,13 +34,35 @@ public class PointTester {
     }
     for (int index = 0; index < randomizedPoints.length; index++) {
       double selfCalculatedDistance = Math.sqrt(Math.pow(randomizedPoints[index].getX(), 2) + Math.pow(randomizedPoints[index].getY(), 2));
-      if (randomizedPoints[index].distanceTo(origin) == selfCalculatedDistance) {//we round here because FP errors can cause the last digit to be off a bit.
-        //System.out.println("TRUTH TEST PASSED AT RUN: " + index);             //if you want live printouts uncomment this.
+      if (randomizedPoints[index].distanceTo(origin) == selfCalculatedDistance) {
+        //System.out.println("DISTANCE TEST PASSED AT RUN: " + index);             //if you want live printouts uncomment this.
       } else {
         failure = true;
         System.out.println("WE HAVE FAILED");
         System.out.println("EXPECTED: " + selfCalculatedDistance);
         System.out.println("ACTUAL: "  + randomizedPoints[index].distanceTo(origin));
+      }
+    }
+
+    System.out.println("STATIC FIRE TEST");
+    Point[] points = {
+      new Point(1, 1),
+      new Point(3, 4),
+      new Point(4, 3)
+    };
+    double[] expectedDistances = {
+      Math.sqrt(2),
+      5,
+      5
+    };
+    for (int index = 0; index < points.length; index++) {
+      if (points[index].distanceTo(origin) == expectedDistances[index]) {
+        //System.out.println("TRUTH TEST PASSED AT RUN: " + index);             //if you want live printouts uncomment this.
+      } else {
+        failure = true;
+        System.out.println("WE HAVE FAILED");
+        System.out.println("EXPECTED: " + expectedDistances[index]);
+        System.out.println("ACTUAL: "  + points[index].distanceTo(origin));
       }
     }
 
