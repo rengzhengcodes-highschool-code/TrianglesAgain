@@ -39,6 +39,11 @@ public class Triangle {
     }
   }
 
+  public String toString() {                                                    //lists ponts of Triangle
+    return "v1(" + p1.getX() + ", " + p1.getY() + ") v2(" + p2.getX() + ", " +
+    p2.getY() + ") v3(" + p3.getX() + ", " + p3.getY() + ")";
+  }
+
   public void setVertex(int index, Point newP) {                                //replaces a vertex
     Point[] vertexes = {p1, p2, p3};
     vertexes[index] = newP;
