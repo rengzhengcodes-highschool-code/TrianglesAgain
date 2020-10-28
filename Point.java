@@ -21,4 +21,12 @@ public class Point{
     return y;
   }
 
+  public double distanceTo(Point other) {
+    return Math.sqrt(Math.pow(x-other.x, 2)+Math.pow(y-other.y, 2));
+  }
+
+  public boolean equals(Point other) {
+    return x == other.x && y == other.y;
+  }
+
 }
