@@ -4,6 +4,11 @@ public class PointTester {
     boolean failure = false;
     failure = distanceTo();
     failure = equalTester();
+    if (failure) {
+      System.out.println("There's a bug in your class");
+    } else {
+      System.out.println("Nice job, partner");
+    }
   }
 
   public static boolean distanceTo() {
