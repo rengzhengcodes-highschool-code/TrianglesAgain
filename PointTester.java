@@ -2,17 +2,17 @@ public class PointTester {
 
   public static void main(String[] args) {
     boolean failure = false;
-    failure = distanceTo();
-    failure = equalTester();
+    failure = distanceTo() || failure;
+    failure = equalTester() || failure;
     if (failure) {
-      System.out.println("There's a bug in your class");
+      System.out.println("\nThere's a bug in your class");
     } else {
-      System.out.println("Nice job, partner");
+      System.out.println("\nNice job, partner");
     }
   }
 
   public static boolean distanceTo() {
-    System.out.println("distanceTo() TEST");
+    System.out.println("\ndistanceTo() TEST");
     boolean failure = false;
     Point origin = new Point(0, 0);
     Point[] randomizedPoints = new Point[100];
@@ -81,7 +81,7 @@ public class PointTester {
   }
 
   public static boolean equalTester() {
-    System.out.println("POINT CLASS equal() TESTER");
+    System.out.println("\nPOINT CLASS equal() TESTER");
     boolean failure = false;
     Point[] randomizedPoints = new Point[100];
     for (int index = 0; index < randomizedPoints.length; index++) {
