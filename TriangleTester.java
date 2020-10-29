@@ -5,6 +5,7 @@ public class TriangleTester {
     failure = constructorTester() || failure;
     failure = getPerimeterTester() || failure;
     failure = getAreaTester() || failure;
+    failure = classifyTester() || failure;
 
     if (failure) {
       System.out.println("\nThere's a bug in your class");
@@ -129,6 +130,7 @@ public class TriangleTester {
   }
 
   public static boolean classifyTester() {
+    System.out.println("\n classify() TEST");
     boolean failure = false;
     Triangle[] triangles = {
       new Triangle(0,0,0,0,0,0),                                                //degenerate equilateral
@@ -158,6 +160,22 @@ public class TriangleTester {
      "isosceles",
    };
 
+   for (int index = 0; index < triangles.length; index++) {
+     if (triangles[index].classify().equals(classifications[index])) {          //The check is set up this way to counteract FP value errors from the difference in area finding methods.
+       //System.out.println("CLASSIFY TEST PASSED AT RUN: " + index);           /if you want live printouts uncomment this.
+     } else {
+       failure = true;
+       System.out.println("WE HAVE FAILED");
+       System.out.println("EXPECTED: " + classifications[index]);
+       System.out.println("ACTUAL: "  + triangles[index].classify());
+     }
+   }
+
+   if (failure) {
+     System.out.println("classify() DOESN'T WORK");
+   } else {
+     System.out.println("classify() WORKS");
+   }
 
     return failure;
   }
