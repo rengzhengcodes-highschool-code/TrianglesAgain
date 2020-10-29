@@ -18,17 +18,21 @@ public class Triangle {
   }
 
   public double getArea() {
-    double semiPerimeter = getPerimeter();
+    double semiPerimeter = getPerimeter()/2;
     return Math.sqrt(semiPerimeter * (semiPerimeter - p1.distanceTo(p2)) *
     (semiPerimeter - p2.distanceTo(p3)) * (semiPerimeter - p3.distanceTo(p1))); //area via heron's formula
+  }
+
+  private static double roundTenThousandths(double n) {                          //roundingTenThousandths
+    return Math.round(n * 10000.) / 10000.;
   }
 
   public String classify() {
     //calculation for how many sides are equal
     int sidesEqual = 0;
-    if (p1.distanceTo(p2) == p1.distanceTo(p3)) sidesEqual++;
-    if (p1.distanceTo(p2) == p2.distanceTo(p3)) sidesEqual++;
-    if (p1.distanceTo(p3) == p2.distanceTo(p3)) sidesEqual++;
+    if (roundTenThousandths(p1.distanceTo(p2)) == roundTenThousandths(p1.distanceTo(p3))) sidesEqual++;
+    if (roundTenThousandths(p1.distanceTo(p2)) == roundTenThousandths(p2.distanceTo(p3))) sidesEqual++;
+    if (roundTenThousandths(p1.distanceTo(p3)) == roundTenThousandths(p2.distanceTo(p3))) sidesEqual++;
     //output depending on equal sides.
     switch (sidesEqual) {                                                       //classification based on sideLength
       case 0: return "scalene";
@@ -45,8 +49,11 @@ public class Triangle {
   }
 
   public void setVertex(int index, Point newP) {                                //replaces a vertex
-    Point[] vertexes = {p1, p2, p3};
-    vertexes[index] = newP;
+    switch (index) {
+      case 0: p1 = newP; break;
+      case 1: p2 = newP; break;
+      case 2: p3 = newP; break;
+    }
   }
 
 }
