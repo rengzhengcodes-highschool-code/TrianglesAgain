@@ -233,7 +233,7 @@ public class TriangleTester {
    }
 
    public static boolean setVertexTester() {
-     System.out.println("setVertex() TEST");
+     System.out.println("\nsetVertex() TEST");
      boolean failure = false;
      Point point = new Point(1,1);
      Point swap = new Point(0,0);
@@ -266,6 +266,11 @@ public class TriangleTester {
        }
      }
 
+     if (failure) {
+       System.out.println("setVertex() DOESN'T WORK");
+     } else {
+       System.out.println("setVertex() WORKS");
+     }
 
      return failure;
    }
