@@ -7,6 +7,7 @@ public class TriangleTester {
     failure = getAreaTester() || failure;
     failure = classifyTester() || failure;
     failure = toStringTester() || failure;
+    failure = setVertexTester() || failure;
 
     if (failure) {
       System.out.println("\nThere's a bug in your class");
@@ -227,6 +228,44 @@ public class TriangleTester {
     } else {
       System.out.println("toString() WORKS");
     }
+
+     return failure;
+   }
+
+   public static boolean setVertexTester() {
+     System.out.println("setVertex() TEST");
+     boolean failure = false;
+     Point point = new Point(1,1);
+     Point swap = new Point(0,0);
+     Triangle[] triangles = {
+       new Triangle(point, point, point),
+       new Triangle(point, point, point),
+       new Triangle(point, point, point)
+     };
+     String[] expectedStringPostSwap = {
+       "v1(0.0, 0.0) v2(1.0, 1.0) v3(1.0, 1.0)",
+       "v1(1.0, 1.0) v2(0.0, 0.0) v3(1.0, 1.0)",
+       "v1(1.0, 1.0) v2(1.0, 1.0) v3(0.0, 1.0)",
+     };
+
+     for (int index = 0; index < triangles.length; index++) {
+       String original = "v1(1.0, 1.0) v2(1.0, 1.0) v3(1.0, 1.0)";
+       if (!original.equals(triangles[index].toString())) {
+         failure = true;
+         System.out.println("This setup is wrong. You shouldn't be here");
+       } else {
+         triangles[index].setVertex(index, swap);
+         if (expectedStringPostSwap[index].equals(expectedStringPostSwap[index])) {
+           //System.out.println("toString() TEST PASSED AT RUN: " + index);          //if you want live printouts uncomment this.
+          } else {
+           failure = true;
+           System.out.println("WE HAVE FAILED");
+           System.out.println("EXPECTED: " + expectedStringPostSwap[index]);
+           System.out.println("ACTUAL: "  + triangles[index].toString());
+          }
+       }
+     }
+
 
      return failure;
    }
